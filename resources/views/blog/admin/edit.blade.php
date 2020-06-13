@@ -13,8 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        EDIT ADMIN PAGE
+                        СТРАНИЦА ДЛЯ РЕДАКТИРОВАНИЯ РИСУНКОВ
                     </div>
                 </div>
             </div>
