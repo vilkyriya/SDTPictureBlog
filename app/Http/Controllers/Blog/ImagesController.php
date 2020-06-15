@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Models\Images;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Auth as Auth;
 
 class ImagesController extends BaseController
 {
@@ -137,6 +138,14 @@ class ImagesController extends BaseController
         $data = Images::findOrFail($id);
         $data->votes += 1;
         $data->save();
-        return view('blog.image', compact('data'));
+
+        $user_id = Auth::user()->whichUser();
+
+        \DB::table('images_user')->insert([
+            'images_id' => $id,
+            'user_id' => $user_id,
+        ]);
+
+        return redirect('show/' . $id);
     }
 }

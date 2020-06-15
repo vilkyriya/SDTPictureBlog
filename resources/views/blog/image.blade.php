@@ -11,10 +11,14 @@
 
         @auth
             @if(Auth::user()->isUser())
+                @if(!Auth::user()->isVoted($data->id))
                     <form method="post" action="{{ url('/vote', $data->id) }}" enctype="multipart/form-data">
                         @csrf
                         <button type="submit" class="btn btn-success">Нравится!</button>
                     </form>
+                @else
+                    <p>Вы уже проголосовали!</p>
+                @endif
             @endif
         @endauth
 

@@ -52,6 +52,22 @@ class User extends Authenticatable
         if ($user) return "user";
     }
 
+    public function whichUser()
+    {
+        $user = $this->id;
+        return $user;
+    }
+
+    public function isVoted($images_id)
+    {
+        $voted = \DB::table('images_user')->where([
+            ['images_id', '=', $images_id],
+            ['user_id', '=', $this->id],
+        ])->exists();
+
+        if ($voted) return "voted";
+    }
+
     public function isVisitor()
     {
         $user = $this->roles()->where('name', '')->exists();
