@@ -14,9 +14,4 @@ class MainController extends AdminBaseController
         return view('blog.admin.index', compact('data'))
             ->with('i', (request()->input('page',1) - 1) * 5);
     }
-
-    public function create()
-    {
-        return view('blog.admin.create');
-    }
 }

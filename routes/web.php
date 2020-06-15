@@ -16,22 +16,28 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('blog.mainboard');
 //});
+Route::get('/', 'Blog\ImagesController@index');
+Auth::routes();
+Route::get('/show', 'Blog\ImagesController@show');
 
 Route::group(['middleware' => ['status', 'auth']], function (){
     $groupData = [
     ];
 
     Route::group($groupData, function (){
+        Route::get('admin/create', function () {
+            return view('blog.admin.create');
+        });
+        Route::resource('admin/store', 'Blog\ImagesController');
         Route::resource('admin/index', 'Blog\Admin\MainController');
         Route::resource('admin/destroy', 'Blog\ImagesController');
         Route::resource('admin/edit', 'Blog\ImagesController');
-        Route::resource('admin/create', 'Blog\Admin\MainController');
     });
 
-Route::get('/', 'Blog\ImagesController@index');
-Route::get('/show', 'Blog\ImagesController@show');
 
-Auth::routes();
+
+
+
 
 
 

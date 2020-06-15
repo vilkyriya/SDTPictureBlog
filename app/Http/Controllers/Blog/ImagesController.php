@@ -26,7 +26,7 @@ class ImagesController extends BaseController
      */
     public function create()
     {
-        return redirect('admin/create');
+        return view('blog.admin.create');
     }
 
     /**
@@ -37,22 +37,22 @@ class ImagesController extends BaseController
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//            'name'    =>  'required',
-//            'image'   =>  'required|image|max:2048'
-//        ]);
-//
-//        $image = $request->file('image');
-//
-//        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-//        $image->move(public_path('blog_images'), $new_name);
-//        $form_data = array(
-//            'name'       =>   $request->name,
-//            'image'      =>   $new_name
-//        );
-//
-//        Images::create($form_data);
-//        return redirect('blog.image')->with('success', 'Data Added successfully.');
+        $request->validate([
+            'name'    =>  'required',
+            'image'   =>  'required|image|max:2048'
+        ]);
+
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('blog_images'), $new_name);
+        $form_data = array(
+            'name'       =>   $request->name,
+            'image'      =>   $new_name
+        );
+
+        Images::create($form_data);
+        return redirect('admin/index')->with('success', 'Изображение добавлено.');
     }
 
     /**
@@ -101,6 +101,6 @@ class ImagesController extends BaseController
     {
         $data = Images::findOrFail($id);
         $data->delete();
-        return redirect('admin/index');
+        return redirect('admin/index')->with('success', 'Изображение удалено.');
     }
 }

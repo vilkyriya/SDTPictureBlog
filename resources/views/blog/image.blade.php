@@ -9,11 +9,11 @@
         <img src="{{ URL::to('/') }}/blog_images/{{ $data->image }}" class="img-thumbnail" />
         <h3>Нравится: {{ $data->votes }} </h3>
 
-        <form method="post" action="{{ route('images.update', $data->id) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-            <button type="submit" class="btn btn-success">Like it!</button>
-        </form>
+{{--        <form method="post" action="{{ route('images.update', $data->id) }}" enctype="multipart/form-data">--}}
+{{--            @csrf--}}
+{{--            @method('PATCH')--}}
+{{--            <button type="submit" class="btn btn-success">Like it!</button>--}}
+{{--        </form>--}}
 
     </div>
 @endsection

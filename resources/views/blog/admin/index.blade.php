@@ -5,7 +5,12 @@
         <a class="btn btn-success" href="{{ url('/admin/create') }}" >Добавить новое изображение</a>
     </div>
     <br>
-
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success text-center">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    <br>
     <table class="table table-bordered table-striped">
         <tr>
             <th>Изображение</th>
