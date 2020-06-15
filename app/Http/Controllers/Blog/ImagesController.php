@@ -125,4 +125,18 @@ class ImagesController extends BaseController
         $data->delete();
         return redirect('admin/index')->with('success', 'Изображение удалено.');
     }
+
+    /**
+     * Change votes
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function vote($id)
+    {
+        $data = Images::findOrFail($id);
+        $data->votes += 1;
+        $data->save();
+        return view('blog.image', compact('data'));
+    }
 }

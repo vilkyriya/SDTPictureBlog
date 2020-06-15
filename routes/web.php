@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Blog\ImagesController@index');
 Auth::routes();
 Route::get('/show/{id}', 'Blog\ImagesController@show');
+Route::post('/vote/{id}', 'Blog\ImagesController@vote');
 
 Route::group(['middleware' => ['status', 'auth']], function (){
     $groupData = [
