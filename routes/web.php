@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::get('/', 'Blog\ImagesController@index');
 Auth::routes();
-Route::get('/show', 'Blog\ImagesController@show');
+Route::get('/show/{id}', 'Blog\ImagesController@show');
 
 Route::group(['middleware' => ['status', 'auth']], function (){
     $groupData = [

@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron text-center">
         <div align="right">
-            <a href="{{ route('/') }}" class="btn btn-default">Назад</a>
+            <a href="{{ url('/') }}" class="btn btn-default">Назад</a>
         </div>
         <br />
         <img src="{{ URL::to('/') }}/blog_images/{{ $data->image }}" class="img-thumbnail" />

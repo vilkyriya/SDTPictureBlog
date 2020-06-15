@@ -12,7 +12,7 @@
     @endif
 
     <div align="right">
-        <a href="{{ url('/') }}" class="btn btn-default">Назад</a>
+        <a href="{{ url('/admin/index') }}" class="btn btn-default">Назад</a>
     </div>
 
     <center>
@@ -25,14 +25,14 @@
                 <input type="text" name="name" class="form-control input-lg" />
             </div>
         </div>
-        <br /><br /><br />
+        <br />
         <div class="form-group">
             <label class="col-md-4 text-center">Выберите изображение</label>
             <div class="col-md-8">
                 <input type="file" name="image" />
             </div>
         </div>
-        <br /><br /><br />
+        <br />
         <div class="form-group text-center">
             <input type="submit" name="add" class="btn btn-primary input-lg" value="Add" />
         </div>
