@@ -28,17 +28,10 @@ Route::group(['middleware' => ['status', 'auth']], function (){
         Route::get('admin/create', function () {
             return view('blog.admin.create');
         });
+        Route::get('admin/edit/{id}', 'Blog\ImagesController@edit');
         Route::resource('admin/store', 'Blog\ImagesController');
+        Route::post('admin/update/{id}', 'Blog\ImagesController@update');
         Route::resource('admin/index', 'Blog\Admin\MainController');
         Route::resource('admin/destroy', 'Blog\ImagesController');
-        Route::resource('admin/edit', 'Blog\ImagesController');
     });
-
-
-
-
-
-
-
-
 });

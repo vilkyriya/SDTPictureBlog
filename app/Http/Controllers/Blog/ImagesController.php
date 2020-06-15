@@ -76,7 +76,7 @@ class ImagesController extends BaseController
     public function edit($id)
     {
         $data = Images::findOrFail($id);
-        return redirect('admin/index');
+        return view('blog.admin.edit', compact('data'));
     }
 
     /**
@@ -88,7 +88,29 @@ class ImagesController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
+        if($image != '')
+        {
+            $request->validate([
+                'name'    =>  'required',
+                'image'   =>  'required|image|max:2048'
+            ]);
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('blog_images'), $image_name);
+        } else {
+            $request->validate([
+                'name'    =>  'required',
+            ]);
+        }
+
+        $form_data = array(
+            'name'       =>   $request->name,
+            'image'      =>   $image_name
+        );
+
+        Images::whereId($id)->update($form_data);
+        return redirect('admin/index')->with('success', 'Изображение изменено.');
     }
 
     /**

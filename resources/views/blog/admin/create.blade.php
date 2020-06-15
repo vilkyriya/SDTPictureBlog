@@ -34,7 +34,7 @@
         </div>
         <br />
         <div class="form-group text-center">
-            <input type="submit" name="add" class="btn btn-primary input-lg" value="Add" />
+            <input type="submit" name="add" class="btn btn-primary input-lg" value="Добавить" />
         </div>
 
     </form>
