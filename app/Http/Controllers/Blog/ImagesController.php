@@ -122,6 +122,8 @@ class ImagesController extends BaseController
      */
     public function destroy($id)
     {
+        \DB::table('images_user')->where('images_id', '=', $id)->delete();
+
         $data = Images::findOrFail($id);
         $data->delete();
         return redirect('admin/index')->with('success', 'Изображение удалено.');
