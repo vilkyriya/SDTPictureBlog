@@ -2,11 +2,11 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Model
+class User extends Authenticatable
 {
     use SoftDeletes;
     use Notifiable;
@@ -26,5 +26,16 @@ class User extends Model
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role', 'user_roles');
+    }
+
+    public function isAdministrator()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
+    }
+
+    public function isUser()
+    {
+        $user = $this->roles()->where('name', 'user')->exists();
+        if ($user) return "user";
     }
 }
