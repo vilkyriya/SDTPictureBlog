@@ -27,7 +27,7 @@
                     <form action="{{ url('/admin/destroy', $row->id) }}" method="post">
                         <a href="{{ url('/admin/edit', $row->id) }}" class="btn btn-primary">Изменить</a>
                         @csrf
-                        @method('DELETE')
+                        @method('POST')
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </form>
                 </td>

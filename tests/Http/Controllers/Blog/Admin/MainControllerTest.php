@@ -22,5 +22,6 @@ class MainControllerTest extends TestCase
 
         $response = $this->actingAs($admin, 'api')->get('admin/index');
         $response->assertStatus(200);
+        \DB::table('users')->where('id', '=', $admin->id)->delete();
     }
 }

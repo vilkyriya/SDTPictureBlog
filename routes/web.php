@@ -30,9 +30,9 @@ Route::group(['middleware' => ['status', 'auth']], function (){
             return view('blog.admin.create');
         });
         Route::get('admin/edit/{id}', 'Blog\ImagesController@edit');
-        Route::resource('admin/store', 'Blog\ImagesController');
+        Route::post('admin/store', 'Blog\ImagesController@store');
         Route::post('admin/update/{id}', 'Blog\ImagesController@update');
         Route::resource('admin/index', 'Blog\Admin\MainController');
-        Route::resource('admin/destroy', 'Blog\ImagesController');
+        Route::post('admin/destroy/{id}', 'Blog\ImagesController@destroy');
     });
 });
