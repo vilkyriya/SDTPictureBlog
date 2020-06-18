@@ -2,7 +2,7 @@
 .vscode
 .vagrant
 .phpstorm.meta.php
-_ide_helper.php 
+_ide_helper.php
 /node_modules
 /storage/*.key
 /vendor
@@ -13,4 +13,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/public/blog_images
 
