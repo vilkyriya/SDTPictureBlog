@@ -17,10 +17,17 @@ class MainControllerTest extends TestCase
 
         $admin = factory(Admin::class)->create();
 
-        \DB::table('user_roles')->where('user_id', '=', $admin->id)->update(array('role_id' => 3));
+        if (\DB::table('users')->count() >= 1)
+        {
+            \DB::table('user_roles')->where('user_id', '=', $admin->id)->update(array('role_id' => 3));
 
-        $response = $this->actingAs($admin, 'api')->get('admin/index');
-        $response->assertStatus(302);
-        \DB::table('users')->where('id', '=', $admin->id)->delete();
+            $response = $this->actingAs($admin, 'api')->get('admin/index');
+            $response->assertViewIs('blog.admin.index');
+            \DB::table('users')->where('id', '=', $admin->id)->delete();
+        }
+        else {
+            $response = $this->actingAs($admin, 'api')->get('/');
+            $response->assertStatus('WHAT');
+        }
     }
 }

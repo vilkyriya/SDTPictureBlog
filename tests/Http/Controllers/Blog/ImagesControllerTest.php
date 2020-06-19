@@ -50,8 +50,7 @@ class ImagesControllerTest extends TestCase
         $this->CreateAdmin();
         $response = $this->actingAs($this->admin)->get('admin/create');
 
-//        $response->assertViewIs('blog.admin.create');
-        $response->assertStatus(302);
+        $response->assertViewIs('blog.admin.create');
         $this->DeleteAdmin();
     }
 
@@ -70,12 +69,10 @@ class ImagesControllerTest extends TestCase
 
     public function testShow()
     {
-//        $temp_image = \DB::table('images')->where('name', '=', 'Изображение')->first();
-//        $response = $this->get('show/' . $temp_image->id);
-////        $response->assertViewIs('blog.image');
-//        $response->assertStatus(302);
-        $response = $this->get('/');
-        $response->assertStatus(\DB::table('images')->count());
+        $temp_image = \DB::table('images')->latest()->first();
+        $response = $this->get('show/' . $temp_image->id);
+//        $response->assertViewIs('blog.image');
+        $response->assertStatus(302);
     }
 
     public function testEdit()
