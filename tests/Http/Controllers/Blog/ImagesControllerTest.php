@@ -11,21 +11,34 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ImagesControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     public $admin;
     public $user;
+
+    public function FillUserRoleTable()
+    {
+        $data = [
+        ['id'=> 3, 'name'=> 'admin'],
+        ['id'=> 2, 'name'=> 'user'],
+        ];
+        \DB::table('roles')->insert($data);
+    }
 
     public function CreateAdmin()
     {
         $this->admin = factory(Admin::class)->create();
-        \DB::table('user_roles')->where('user_id', '=', $this->admin->id)->update(array('role_id' => 3));
+        \DB::table('user_roles')->insert([
+            'user_id' => $this->admin->id,
+            'role_id' => 3,
+        ]);
     }
 
     public function CreateUser()
     {
         $this->user = factory(User::class)->create();
-        \DB::table('user_roles')->where('user_id', '=', $this->user->id)->update(array('role_id' => 3));
+        \DB::table('user_roles')->insert([
+            'user_id' => $this->user->id,
+            'role_id' => 2,
+        ]);
     }
 
     public function DeleteAdmin()
@@ -40,6 +53,7 @@ class ImagesControllerTest extends TestCase
 
     public function testIndex()
     {
+//        $this->FillUserRoleTable();
         $response = $this->get('/');
         $response->assertViewIs('blog.mainboard');
     }
@@ -71,8 +85,7 @@ class ImagesControllerTest extends TestCase
     {
         $temp_image = \DB::table('images')->latest()->first();
         $response = $this->get('show/' . $temp_image->id);
-//        $response->assertViewIs('blog.image');
-        $response->assertStatus(302);
+        $response->assertViewIs('blog.image');
     }
 
     public function testEdit()
@@ -82,8 +95,7 @@ class ImagesControllerTest extends TestCase
         $temp_image = \DB::table('images')->latest()->first();
         $response = $this->actingAs($this->admin)->get('admin/edit/' . $temp_image->id);
 
-//        $response->assertViewIs('blog.admin.edit');
-        $response->assertStatus(302);
+        $response->assertViewIs('blog.admin.edit');
         $this->DeleteAdmin();
     }
 
