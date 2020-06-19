@@ -4,12 +4,13 @@ namespace Tests\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Blog\Admin\MainController;
 use Tests\TestCase;
-use \Illuminate\Support\Facades\Auth as Auth;
 use App\Models\Admin\User as Admin;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MainControllerTest extends TestCase
 {
-
+    use RefreshDatabase;
+    
     public function testIndex()
     {
         $this->withoutExceptionHandling();

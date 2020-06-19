@@ -4,13 +4,15 @@ namespace Tests\Http\Controllers\Blog;
 
 use App\Http\Controllers\Blog\ImagesController;
 use Tests\TestCase;
-use \Illuminate\Support\Facades\Auth as Auth;
 use App\Models\User as User;
 use App\Models\Admin\User as Admin;
 use \Illuminate\Http\UploadedFile;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ImagesControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public $admin;
     public $user;
 
