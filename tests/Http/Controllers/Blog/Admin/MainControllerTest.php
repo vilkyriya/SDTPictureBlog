@@ -14,14 +14,15 @@ class MainControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        // Create Image
         $data = [
             ['id'=> 3, 'name'=> 'admin'],
             ['id'=> 2, 'name'=> 'user'],
         ];
         \DB::table('roles')->insert($data);
 
+        // Create Admin
         $admin = factory(Admin::class)->create();
-
         \DB::table('user_roles')->insert([
             'user_id' => $admin->id,
             'role_id' => 3,
