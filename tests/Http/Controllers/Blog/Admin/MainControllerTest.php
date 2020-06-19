@@ -20,7 +20,7 @@ class MainControllerTest extends TestCase
         \DB::table('user_roles')->where('user_id', '=', $admin->id)->update(array('role_id' => 3));
 
         $response = $this->actingAs($admin, 'api')->get('admin/index');
-        $response->assertStatus(200);
+        $response->assertViewIs('blog.admin.index');
         \DB::table('users')->where('id', '=', $admin->id)->delete();
     }
 }
