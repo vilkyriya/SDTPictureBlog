@@ -18,9 +18,9 @@ class CreateImagesUserTable extends Migration
             $table->bigInteger('images_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('images_id')
-                ->references('id')->on('images');
-            $table->foreign('user_id')
-                ->references('id')->on('user');
+                ->references('id')->on('images')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
