@@ -21,7 +21,9 @@
             @endforeach
         </div>
 
-        {!! $data->links() !!}
+        <div class="pagination justify-content-center">
+            {!! $data->links() !!}
+        </div>
     </center>
 
 
