@@ -27,7 +27,7 @@ class MainControllerTest extends TestCase
         }
         else {
             $response = $this->actingAs($admin, 'api')->get('/');
-            $response->assertStatus('WHAT');
+            $response->assertStatus(302);
         }
     }
 }
