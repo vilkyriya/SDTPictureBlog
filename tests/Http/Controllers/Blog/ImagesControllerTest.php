@@ -72,8 +72,8 @@ class ImagesControllerTest extends TestCase
     {
         $temp_image = \DB::table('images')->where('name', '=', 'Изображение')->first();
         $response = $this->get('show/' . $temp_image->id);
-        $response->assertViewIs('blog.image');
-//        $response->assertStatus(302);
+//        $response->assertViewIs('blog.image');
+        $response->assertStatus(302);
     }
 
     public function testEdit()
