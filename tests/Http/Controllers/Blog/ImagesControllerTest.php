@@ -19,18 +19,13 @@ class ImagesControllerTest extends TestCase
     public function CreateAdmin()
     {
         $this->admin = factory(Admin::class)->create();
-        \DB::table('user_roles')->insert([
-            'user_id' => $this->admin->id,
-            'role_id' => 3,
-        ]);
+        \DB::table('user_roles')->where('user_id', '=', $this->admin->id)->update(array('role_id' => 3));
     }
 
     public function CreateUser()
     {
         $this->user = factory(User::class)->create();
-        \DB::table('user_roles')->insert([
-            'user_id' => $this->user->id,
-        ]);
+        \DB::table('user_roles')->where('user_id', '=', $this->user->id)->update(array('role_id' => 3));
     }
 
     public function DeleteAdmin()
