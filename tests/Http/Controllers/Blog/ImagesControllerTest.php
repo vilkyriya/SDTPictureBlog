@@ -64,13 +64,7 @@ class ImagesControllerTest extends TestCase
             'image' => UploadedFile::fake()->create('test.png'),
         ]);
 
-        if (\DB::table('images')->where('name', '=', 'Изображение')->exists()) {
-            $response->assertStatus(true);
-        } else {
-            $response->assertStatus(false);
-        }
-
-//        $response->assertStatus(302);
+        $response->assertStatus(302);
         $this->DeleteAdmin();
     }
 
@@ -78,8 +72,8 @@ class ImagesControllerTest extends TestCase
     {
         $temp_image = \DB::table('images')->where('name', '=', 'Изображение')->first();
         $response = $this->get('show/' . $temp_image->id);
-//        $response->assertViewIs('blog.image');
-        $response->assertStatus(302);
+        $response->assertViewIs('blog.image');
+//        $response->assertStatus(302);
     }
 
     public function testEdit()
