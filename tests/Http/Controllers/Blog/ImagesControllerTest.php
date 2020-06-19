@@ -11,6 +11,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ImagesControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public $admin;
     public $user;
 
@@ -53,13 +55,13 @@ class ImagesControllerTest extends TestCase
 
     public function testIndex()
     {
-//        $this->FillUserRoleTable();
         $response = $this->get('/');
         $response->assertViewIs('blog.mainboard');
     }
 
     public function testCreate()
     {
+        $this->FillUserRoleTable();
         $this->withoutExceptionHandling();
         $this->CreateAdmin();
         $response = $this->actingAs($this->admin)->get('admin/create');
@@ -70,6 +72,7 @@ class ImagesControllerTest extends TestCase
 
     public function testStore()
     {
+        $this->FillUserRoleTable();
         $this->withoutExceptionHandling();
         $this->CreateAdmin();
         $response = $this->actingAs($this->admin)->post('/admin/store/', [

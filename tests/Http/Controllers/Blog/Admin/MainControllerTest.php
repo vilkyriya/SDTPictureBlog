@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MainControllerTest extends TestCase
 {
+    use RefreshDatabase;
     public function testIndex()
     {
         $this->withoutExceptionHandling();
